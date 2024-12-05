@@ -21,7 +21,7 @@ export default function CreateRoom() {
 
                 <div className={styles.setPrice}>
                     <h2>目標金額を入力</h2>
-                    <p>¥<input type="text" name="price" /></p>
+                    <p>¥<input type="number" name="price" /></p>
                 </div>
 
                 <div className={styles.choseShowPrice}>
@@ -43,6 +43,12 @@ export default function CreateRoom() {
 
                 <div className={styles.addMembers}>
                     <h2>人数制限</h2>
+                    <select name="numberOfPeople" id="numberOfPeople">
+                        <option value="1">1人</option>
+                        <option value="2">2人</option>
+                        <option value="3">3人</option>
+                        <option value="4">4人</option>
+                    </select>
                 </div>
 
 

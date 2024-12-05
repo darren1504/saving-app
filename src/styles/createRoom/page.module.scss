@@ -3,6 +3,12 @@
     height: 100vh;
     color: #333;
     background-color: #fff;
+    padding: 30px;
+}
+
+.top {
+    display: flex;
+    justify-content: center;
 }
 
 .backButton::before {
