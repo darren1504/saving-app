@@ -8,11 +8,16 @@ export default function CreateRoom() {
     return (
         <>
             <div className={styles.createRoomContainer}>
-                <h1 className={styles.title}>ルーム作成</h1>
-                <div className={styles.groupIcon}></div>
-                <form action="#" method="post">
-                    <input type="text" name="groupName" placeholder="ルーム名" />
-                </form>
+                <div className={styles.top}>
+                    <div className={styles.backButton}></div>
+                    <h1 className={styles.title}>グループ作成</h1>
+                </div>
+                <div className={styles.roomTop}>
+                    <div className={styles.groupIcon}></div>
+                    <form className={styles.nameForm} action="#" method="post">
+                        <input type="text" name="groupName" placeholder="ルーム名" className={styles.nameBar} />
+                    </form>
+                </div>
 
                 <div className={styles.setPrice}>
                     <h2>目標金額を入力</h2>
