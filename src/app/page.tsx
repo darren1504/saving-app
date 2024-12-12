@@ -3,11 +3,12 @@
 import React from "react";
 import styles from '@/styles/savingPage/page.module.scss';
 import { useState } from "react";
+import Link from "next/link";
 // import Image from 'next/image';
 
 export default function Home() {
   const [displayValue, setDisplayValue] = useState("");
-  
+
   const handleKeyPress = (value: string) => {
     if (value === "←") {
       setDisplayValue(displayValue.slice(0, -1));
@@ -20,7 +21,9 @@ export default function Home() {
     <>
       <div className={styles.savingPageContainer}>
         <div className={styles.numHolder}>{displayValue}</div>
-        <button className={styles.savingButton}>貯金する</button>
+        <button className={styles.savingButton}>
+            <Link href={`/chooseRoom?amount=${displayValue}`}>貯金する</Link>
+        </button>
         <table className={styles.numberKeys}>
           <tbody>
             <tr>
