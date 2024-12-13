@@ -46,8 +46,8 @@ export default function CreateRoom() {
         <div className={styles.confirmBtn}>
           <button className={styles.done}>作成する</button>
         </div>
+        <Navbar></Navbar>
       </div>
-      <Navbar></Navbar>
     </>
   );
 }
