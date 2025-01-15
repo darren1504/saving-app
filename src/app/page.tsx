@@ -4,6 +4,9 @@ import React from "react";
 import styles from '@/styles/savingPage/page.module.scss';
 import { useState } from "react";
 import Link from "next/link";
+import Image from 'next/image';
+import { db } from '../../Firebase/firebase';
+import { collection, addDoc } from 'firebase/firestore';
 // import Image from 'next/image';
 
 export default function Home() {
@@ -17,12 +20,26 @@ export default function Home() {
     }
   };
 
+  const handleSave = async () => {
+    try {
+      const docRef = await addDoc(collection(db, "savings"), {
+        amount: Number(displayValue),
+        createdAt: new Date(),
+        roomName: "", // roomNameは後で更新
+      });
+      console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  };
+
   return (
     <>
       <div className={styles.savingPageContainer}>
+          <Image src={'/images/wallet.png'} alt="Wallet" width={50} height={50} />
         <div className={styles.numHolder}>{displayValue}</div>
-        <button className={styles.savingButton}>
-            <Link href={`/chooseRoom?amount=${displayValue}`}>貯金する</Link>
+        <button className={styles.savingButton} onClick={handleSave}>
+          <Link href={`/chooseRoom?amount=${displayValue}`}>貯金する</Link>
         </button>
         <table className={styles.numberKeys}>
           <tbody>
