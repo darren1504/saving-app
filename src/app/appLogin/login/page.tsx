@@ -7,12 +7,12 @@ import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBwoiQSqZeT0CjFAgTsVb1Nlv0-exAH99k",
-  authDomain: "test-project-cb5ff.firebaseapp.com",
-  projectId: "test-project-cb5ff",
-  storageBucket: "test-project-cb5ff.firebasestorage.app",
-  messagingSenderId: "501040374102",
-  appId: "1:501040374102:web:4b28a2e6835053910bb6f7",
+  apiKey: "",
+  authDomain: "",
+  projectId: "",
+  storageBucket: "",
+  messagingSenderId: "",
+  appId: "",
 };
 
 // Firebase初期化
