@@ -36,11 +36,13 @@ export default function Home() {
   return (
     <>
       <div className={styles.savingPageContainer}>
-          <Image src={'/images/wallet.png'} alt="Wallet" width={50} height={50} />
-        <div className={styles.numHolder}>{displayValue}</div>
-        <button className={styles.savingButton} onClick={handleSave}>
-          <Link href={`/chooseRoom?amount=${displayValue}`}>貯金する</Link>
-        </button>
+        <div className={styles.mainContainer}>
+          <Image src={'/images/wallet.png'} alt="Wallet" width={50} height={50} className={styles.walletImg} />
+          <div className={styles.numHolder}>{displayValue}</div>
+          <button className={styles.savingButton} onClick={handleSave}>
+            <Link href={`/chooseRoom?amount=${displayValue}`}>貯金する</Link>
+          </button>
+        </div>
         <table className={styles.numberKeys}>
           <tbody>
             <tr>
