@@ -3,21 +3,88 @@
 import React from "react";
 import Link from "next/link";
 import styles from "@/styles/appLogin/login/page.module.scss";
+import { initializeApp } from "firebase/app";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBwoiQSqZeT0CjFAgTsVb1Nlv0-exAH99k",
+  authDomain: "test-project-cb5ff.firebaseapp.com",
+  projectId: "test-project-cb5ff",
+  storageBucket: "test-project-cb5ff.firebasestorage.app",
+  messagingSenderId: "501040374102",
+  appId: "1:501040374102:web:4b28a2e6835053910bb6f7",
+};
+
+// Firebase初期化
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+// DOM要素の取得
+document.addEventListener("DOMContentLoaded", () => {
+  const loginForm = document.getElementById(
+    "loginForm"
+  ) as HTMLFormElement | null;
+  const emailInput = document.getElementById(
+    "email"
+  ) as HTMLInputElement | null;
+  const passwordInput = document.getElementById(
+    "password"
+  ) as HTMLInputElement | null;
+  const messageElement = document.getElementById(
+    "message"
+  ) as HTMLParagraphElement | null;
+
+  if (!loginForm || !emailInput || !passwordInput || !messageElement) {
+    console.error("必要なHTML要素が見つかりません");
+    return;
+  }
+
+  // フォーム送信イベント
+  loginForm.addEventListener("submit", async (event: SubmitEvent) => {
+    event.preventDefault();
+
+    const email = emailInput.value;
+    const password = passwordInput.value;
+
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      messageElement.textContent = `ログイン成功！ユーザーID: ${userCredential.user.uid}`;
+    } catch (error: any) {
+      console.error("ログインエラー:", error.message);
+      messageElement.textContent = `ログイン失敗: ${error.message}`;
+    }
+  });
+});
 
 export default function Login() {
   return (
     <>
       <div className={styles.loginContainer}>
         <h1 className={styles.title}>おかえりなさい</h1>
-        <form action="#" method="post" className={styles.loginWrap}>
+        <form className={styles.loginWrap} id="loginForm">
           <p>メールアドレス</p>
-          <input type="text" name="email" placeholder="sample@email.com" />
+          <input
+            type="email"
+            name="email"
+            placeholder="sample@email.com"
+            id="email"
+          />
           <p>パスワード</p>
-          <input type="password" name="password" placeholder="パスワード" />
-          <div className={styles.loginBtn}>
-            <Link href="/">ログイン</Link>
-          </div>
+          <input
+            type="password"
+            name="password"
+            placeholder="パスワード"
+            id="password"
+          />
+          <button type="submit" className={styles.loginBtn}>
+            ログイン
+          </button>
         </form>
+        <p id="message"></p>
         <p>
           <Link href="/appLogin/signup">
             アカウントをお持ちでない場合はこちら
